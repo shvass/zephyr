@@ -207,7 +207,7 @@ ZTEST(uart_elementary, test_uart_basic_transmission)
 	err = uart_configure(uart_dev, &test_uart_config);
 	zassert_equal(err, 0, "Unexpected error when configuring UART0: %d", err);
 
-	err = uart_irq_callback_set(uart_dev, interrupt_driven_uart_callback_main_uart);
+	err = uart_irq_callback_user_data_set(uart_dev, interrupt_driven_uart_callback_main_uart, NULL);
 	zassert_equal(err, 0, "Unexpected error when setting callback %d", err);
 	err = uart_irq_callback_user_data_set(uart_dev, interrupt_driven_uart_callback_main_uart,
 					      (void *)test_buffer);
@@ -259,13 +259,13 @@ ZTEST(uart_elementary, test_uart_dual_port_transmission)
 
 	zassert_equal(err, 0, "Unexpected error when configuring UART1: %d", err);
 
-	err = uart_irq_callback_set(uart_dev, interrupt_driven_uart_callback_main_uart);
+	err = uart_irq_callback_user_data_set(uart_dev, interrupt_driven_uart_callback_main_uart, NULL);
 	zassert_equal(err, 0, "Unexpected error when setting callback for UART0 %d", err);
 	err = uart_irq_callback_user_data_set(uart_dev, interrupt_driven_uart_callback_main_uart,
 					      (void *)test_buffer);
 	zassert_equal(err, 0, "Unexpected error when setting user data for UART0 callback %d", err);
 
-	err = uart_irq_callback_set(uart_dev_aux, interrupt_driven_uart_callback_aux_uart);
+	err = uart_irq_callback_user_data_set(uart_dev_aux, interrupt_driven_uart_callback_aux_uart, NULL);
 	zassert_equal(err, 0, "Unexpected error when setting callback for UART1 %d", err);
 	err = uart_irq_callback_user_data_set(uart_dev_aux, interrupt_driven_uart_callback_aux_uart,
 					      (void *)test_buffer_aux);

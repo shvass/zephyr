@@ -103,7 +103,7 @@ static int test_pending(void)
 	/*
 	 * Set IRQ callback function to handle RX IRQ.
 	 */
-	uart_irq_callback_set(uart_dev, uart_pending_callback);
+	uart_irq_callback_user_data_set(uart_dev, uart_pending_callback, NULL);
 
 	/*
 	 * Disable TX IRQ since transmitted data is not
