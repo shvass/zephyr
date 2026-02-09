@@ -70,8 +70,8 @@ static int test_fifo_tx_sizes(void)
 
 	char_sent = 0;
 
-	/* Verify uart_irq_callback_set() */
-	uart_irq_callback_set(uart_dev, uart_fifo_callback);
+	/* Verify uart_irq_callback_user_data_set() */
+	uart_irq_callback_user_data_set(uart_dev, uart_fifo_callback, NULL);
 
 	/* Enable Tx/Rx interrupt before using fifo */
 	/* Verify uart_irq_tx_enable() */

@@ -161,7 +161,7 @@ static void init_test(int idx)
 		async = false;
 		int_driven = uart_irq_tx_complete(uart_dev) >= 0;
 		if (int_driven) {
-			uart_irq_callback_set(uart_dev, int_driven_callback);
+			uart_irq_callback_user_data_set(uart_dev, int_driven_callback, NULL);
 		}
 	}
 }

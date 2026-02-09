@@ -12,14 +12,14 @@
  * @details
  * - Test Steps
  *   - FIFO Output:
- *      -# Set UART IRQ callback using uart_irq_callback_set().
+ *      -# Set UART IRQ callback using uart_irq_callback_user_data_set().
  *      -# Enable UART TX IRQ using uart_irq_tx_enable().
  *      -# Output the prepared data using uart_fifo_fill().
  *      -# Disable UART TX IRQ using uart_irq_tx_disable().
  *      -# Compare the number of characters sent out with the
  *         original data size.
  *   - FIFO Input:
- *      -# Set UART IRQ callback using uart_irq_callback_set().
+ *      -# Set UART IRQ callback using uart_irq_callback_user_data_set().
  *      -# Enable UART RX IRQ using uart_irq_rx_enable().
  *      -# Wait for data sent to UART console and trigger RX IRQ.
  *      -# Read data from UART console using uart_fifo_read().
@@ -105,8 +105,8 @@ static int test_fifo_read(void)
 		return TC_FAIL;
 	}
 
-	/* Verify uart_irq_callback_set() */
-	uart_irq_callback_set(uart_dev, uart_fifo_callback);
+	/* Verify uart_irq_callback_user_data_set() */
+	uart_irq_callback_user_data_set(uart_dev, uart_fifo_callback, NULL);
 
 	/* Enable Tx/Rx interrupt before using fifo */
 	/* Verify uart_irq_rx_enable() */
@@ -137,8 +137,8 @@ static int test_fifo_fill(void)
 
 	char_sent = 0;
 
-	/* Verify uart_irq_callback_set() */
-	uart_irq_callback_set(uart_dev, uart_fifo_callback);
+	/* Verify uart_irq_callback_user_data_set() */
+	uart_irq_callback_user_data_set(uart_dev, uart_fifo_callback, NULL);
 
 	/* Enable Tx/Rx interrupt before using fifo */
 	/* Verify uart_irq_tx_enable() */

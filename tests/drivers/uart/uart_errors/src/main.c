@@ -423,7 +423,7 @@ static void *test_setup(void)
 	zassert_true(device_is_ready(uart_dev_aux), "DUT_AUX UART device is not ready");
 
 	if (IS_ENABLED(CONFIG_UART_INTERRUPT_DRIVEN)) {
-		zassert_equal(uart_irq_callback_set(uart_dev, dut_int_callback), 0);
+		zassert_equal(uart_irq_callback_user_data_set(uart_dev, dut_int_callback, NULL), 0);
 	} else {
 		zassert_equal(uart_callback_set(uart_dev, dut_async_callback, NULL), 0);
 	}
