@@ -125,7 +125,7 @@ manifest:
       revision: 97512610ec92058f0119450b9e743eeb7e95b5c8
       path: modules/lib/cmsis-dsp
     - name: cmsis-nn
-      revision: e9328d612ea3ea7d0d210d3ac16ea8667c01abdd
+      revision: d20117c9e88cf9018d6fa06744dddac700c3e3a1
       path: modules/lib/cmsis-nn
     - name: cmsis_6
       repo-path: CMSIS_6
@@ -144,7 +144,7 @@ manifest:
       groups:
         - fs
     - name: hal_adi
-      revision: 4a189d5d2d20267084d9066cd0c4548dd730f809
+      revision: 87df40a91ab1bed470f211d55da56b7ef9966ea2
       path: modules/hal/adi
       groups:
         - hal
@@ -169,7 +169,7 @@ manifest:
       groups:
         - hal
     - name: hal_espressif
-      revision: 2e6348fd9534226fc0829915e0c15d780855a012
+      revision: 928f0184a9fd68e71c6fbd7e58b28dbbccd632aa
       path: modules/hal/espressif
       west-commands: west/west-commands.yml
       groups:
@@ -195,12 +195,12 @@ manifest:
       groups:
         - hal
     - name: hal_microchip
-      revision: dbbff4a054d5888c3e8a27096335197a1a8186ca
+      revision: 10920fe424f320067e95ae9480a30df9bbe63684
       path: modules/hal/microchip
       groups:
         - hal
     - name: hal_nordic
-      revision: daad38f2e9f6c641849010d74fe02ea736d4d921
+      revision: 5c1df3fe9bc144e558b3506cef6cf33652bb2539
       path: modules/hal/nordic
       groups:
         - hal
@@ -210,7 +210,7 @@ manifest:
       groups:
         - hal
     - name: hal_nxp
-      revision: 10bc1dea4452f629473a0600554b4c85fb712d16
+      revision: 995dc470feee0918daf30ef66dc172f00c5fb3d5
       path: modules/hal/nxp
       groups:
         - hal
@@ -226,12 +226,12 @@ manifest:
         - hal
     - name: hal_realtek
       path: modules/hal/realtek
-      revision: 4f8703eb110220e3a98c7e883f672a575679b9e8
+      revision: f0192aa919dd5d16e68cf3a35fc73a1e51356215
       groups:
         - hal
     - name: hal_renesas
       path: modules/hal/renesas
-      revision: f44af23f0cc1e5e6d06e2c3030b8e401840e314f
+      revision: 9c6c922fe1f3a814eb07a4469fb66b00d694610f
       groups:
         - hal
     - name: hal_rpi_pico
@@ -245,7 +245,7 @@ manifest:
       groups:
         - hal
     - name: hal_silabs
-      revision: 4db87e248dba7ebcb113c4d9e3d096dd4df22de6
+      revision: d375743bceb892a12b8ce6a22d23438353d500cb
       path: modules/hal/silabs
       groups:
         - hal
@@ -260,7 +260,7 @@ manifest:
       groups:
         - hal
     - name: hal_tdk
-      revision: 60708f2c7bf078bc9cc3a7737ef955ec572c23e2
+      revision: fa54cb65535b0ed69564423c9e0bf4e7ee47dcb1
       path: modules/hal/tdk
       groups:
         - hal
@@ -285,13 +285,13 @@ manifest:
       groups:
         - hal
     - name: hal_xtensa
-      revision: 3cc9e3a9360be5c96c956dce84064b85439b6769
+      revision: 0495a1afd300b644d3ec8dd2c3bd11007e69a892
       path: modules/hal/xtensa
       groups:
         - hal
     - name: hostap
       path: modules/lib/hostap
-      revision: f5708c522793b0de59f467080a33caac769cd525
+      revision: 8fa6fe8b1df12a727e86048f587161b241590ca0
     - name: liblc3
       revision: 48bbd3eacd36e99a57317a0a4867002e0b09e183
       path: modules/lib/liblc3
@@ -347,7 +347,7 @@ manifest:
       revision: cf40f6dc7fc441ee6848ea2e177c4522588c1b8c
       path: modules/bsim_hw_models/nrf_hw_models
     - name: nrf_wifi
-      revision: 29afb11a512787bc68e2afd58c9dfde4bb4d5dc4
+      revision: cebea8e27ceb91a7d4580d17db65f93669befe72
       path: modules/lib/nrf_wifi
     - name: open-amp
       revision: 5efe7974f9546582e99f5a842a816ea4b65f5227
@@ -357,7 +357,7 @@ manifest:
       path: modules/lib/openthread
     - name: percepio
       path: modules/debug/percepio
-      revision: 132ed87d617578a6cb70a2443f43e117c315e0f0
+      revision: f9159fe3c79578e8d90c8593e83f9862d9b8962c
       groups:
         - debug
     - name: picolibc
@@ -386,12 +386,12 @@ manifest:
       groups:
         - tee
     - name: trusted-firmware-m
-      revision: 6788687e013733d12f015b5d45b214019dea58f7
+      revision: 3ddfef0edd4fe5672cd63afbe3538509568170df
       path: modules/tee/tf-m/trusted-firmware-m
       groups:
         - tee
     - name: uoscore-uedhoc
-      revision: ac80c3bf2b88deec86d129654fbde09761582342
+      revision: e47f6465a96d12a54b875e5f6e5b2a203fb0d61d
       path: modules/lib/uoscore-uedhoc
     - name: zcbor
       revision: 9164bd18dcd88ff9d9ef98279501fc1093571017

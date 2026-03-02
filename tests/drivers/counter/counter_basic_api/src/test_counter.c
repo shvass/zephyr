@@ -102,6 +102,12 @@ static const struct device *const devices[] = {
 #ifdef CONFIG_COUNTER_GECKO_STIMER
 	DEVICE_DT_GET(DT_CHOSEN(silabs_sleeptimer)),
 #endif
+#ifdef CONFIG_COUNTER_SILABS_BURTC
+	DEVS_FOR_DT_COMPAT(silabs_burtc_counter)
+#endif
+#ifdef CONFIG_COUNTER_SILABS_TIMER
+	DEVS_FOR_DT_COMPAT(silabs_timer_counter)
+#endif
 #ifdef CONFIG_COUNTER_NXP_PIT
 	DEVS_FOR_DT_COMPAT(nxp_pit_channel)
 #endif
@@ -168,6 +174,9 @@ static const struct device *const devices[] = {
 #endif
 #ifdef CONFIG_COUNTER_MCHP_G1_TCC
 	DEVS_FOR_DT_COMPAT(microchip_tcc_g1_counter)
+#endif
+#ifdef CONFIG_COUNTER_MCHP_TC_G1
+	DEVS_FOR_DT_COMPAT(microchip_tc_g1_counter)
 #endif
 };
 

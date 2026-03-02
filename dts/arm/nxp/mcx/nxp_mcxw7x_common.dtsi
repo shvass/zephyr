@@ -1,5 +1,5 @@
 /*
- * Copyright 2024-2025 NXP
+ * Copyright 2024-2026 NXP
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -46,14 +46,20 @@
 			sleep: sleep {
 				compatible = "zephyr,power-state";
 				power-state-name = "suspend-to-idle";
-				exit-latency-us = <10>;
+				exit-latency-us = <140>;
 			};
 
 			deep_sleep: deep-sleep {
 				compatible = "zephyr,power-state";
 				power-state-name = "standby";
-				exit-latency-us = <11>;
+				exit-latency-us = <140>;
 			};
+		};
+
+		sysclk: system-clock {
+			compatible = "fixed-clock";
+			clock-frequency = <DT_FREQ_M(96)>;
+			#clock-cells = <0>;
 		};
 	};
 
@@ -358,6 +364,7 @@
 		compatible = "nxp,nbu";
 		interrupts = <48 2>;
 		interrupt-names = "nbu_rx_int";
+		wakeup-source;
 	};
 
 	hci: hci_ble {

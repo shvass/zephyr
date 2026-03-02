@@ -1045,8 +1045,11 @@ target_include_directories(${OFFSETS_LIB} PRIVATE
   ${ARCH_DIR}/${ARCH}/include
   )
 
-# Make sure that LTO will never be enabled when compiling offsets.c
-set_source_files_properties(${OFFSETS_C_PATH} PROPERTIES COMPILE_OPTIONS $<TARGET_PROPERTY:compiler,prohibit_lto>)
+# Make sure that LTO will never be enabled when compiling offsets sources
+set_source_files_properties(${OFFSETS_C_PATH} ${ZEPHYR_BASE}/lib/heap/heap_constants.c
+  PROPERTIES COMPILE_OPTIONS $<TARGET_PROPERTY:compiler,prohibit_lto>)
+
+target_sources(${OFFSETS_LIB} PRIVATE ${ZEPHYR_BASE}/lib/heap/heap_constants.c)
 
 target_link_libraries(${OFFSETS_LIB} zephyr_interface)
 add_dependencies(zephyr_interface
@@ -1061,6 +1064,7 @@ add_custom_command(
   COMMAND ${PYTHON_EXECUTABLE} ${ZEPHYR_BASE}/scripts/build/gen_offset_header.py
   -i $<TARGET_OBJECTS:${OFFSETS_LIB}>
   -o ${OFFSETS_H_PATH}
+  COMMAND_EXPAND_LISTS
   DEPENDS
   ${OFFSETS_LIB}
   $<TARGET_OBJECTS:${OFFSETS_LIB}>
@@ -1479,6 +1483,8 @@ if(CONFIG_USERSPACE OR CONFIG_DEVICE_DEPS)
   )
   target_link_libraries_ifdef(CONFIG_NATIVE_LIBRARY ${ZEPHYR_LINK_STAGE_EXECUTABLE}
                               $<TARGET_PROPERTY:linker,no_position_independent>)
+  target_link_libraries_ifdef(CONFIG_LLEXT_EXPORT_BUILTINS_BY_SLID ${ZEPHYR_LINK_STAGE_EXECUTABLE}
+                              $<TARGET_PROPERTY:linker,no_check_sections>)
   target_byproducts(TARGET ${ZEPHYR_LINK_STAGE_EXECUTABLE}
                     BYPRODUCTS ${PROJECT_BINARY_DIR}/${ZEPHYR_LINK_STAGE_EXECUTABLE}.map
   )
@@ -1696,6 +1702,8 @@ toolchain_ld_link_elf(
 )
 target_link_libraries_ifdef(CONFIG_NATIVE_LIBRARY ${ZEPHYR_LINK_STAGE_EXECUTABLE}
                             $<TARGET_PROPERTY:linker,partial_linking>)
+target_link_libraries_ifdef(CONFIG_LLEXT_EXPORT_BUILTINS_BY_SLID ${ZEPHYR_LINK_STAGE_EXECUTABLE}
+                            $<TARGET_PROPERTY:linker,no_check_sections>)
 target_byproducts(TARGET ${ZEPHYR_LINK_STAGE_EXECUTABLE}
                   BYPRODUCTS ${PROJECT_BINARY_DIR}/${ZEPHYR_LINK_STAGE_EXECUTABLE}.map
 )
@@ -1747,6 +1755,8 @@ else()
     LIBRARIES_POST_SCRIPT ""
     DEPENDENCIES          ${CODE_RELOCATION_DEP}
   )
+  target_link_libraries_ifdef(CONFIG_LLEXT_EXPORT_BUILTINS_BY_SLID ${ZEPHYR_FINAL_EXECUTABLE}
+                            $<TARGET_PROPERTY:linker,no_check_sections>)
   set_property(TARGET   ${ZEPHYR_FINAL_EXECUTABLE} PROPERTY LINK_DEPENDS ${PROJECT_BINARY_DIR}/linker.cmd)
   add_dependencies(     ${ZEPHYR_FINAL_EXECUTABLE} linker_zephyr_final_script_target)
 

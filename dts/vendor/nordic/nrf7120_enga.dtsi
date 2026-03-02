@@ -244,6 +244,7 @@
 				compatible = "nordic,nrf-spim";
 				reg = <0x4d000 0x1000>;
 				interrupts = <77 NRF_DEFAULT_IRQ_PRIORITY>;
+				clocks = <&hfpll>;
 				#address-cells = <1>;
 				#size-cells = <0>;
 				max-frequency = <DT_FREQ_M(32)>;
@@ -257,6 +258,7 @@
 				compatible = "nordic,nrf-uarte";
 				reg = <0x4d000 0x1000>;
 				interrupts = <77 NRF_DEFAULT_IRQ_PRIORITY>;
+				clocks = <&hfpll>;
 				status = "disabled";
 				endtx-stoptx-supported;
 				frame-timeout-supported;
@@ -876,6 +878,32 @@
 				status = "disabled";
 			};
 
+			power: power@10e000 {
+				compatible = "nordic,nrf-power";
+				reg = <0x10e000 0x1000>;
+				ranges = <0x0 0x10e000 0x1000>;
+				interrupts = <261 NRF_DEFAULT_IRQ_PRIORITY>;
+				status = "disabled";
+				#address-cells = <1>;
+				#size-cells = <1>;
+
+				gpregret1: gpregret1@500 {
+					#address-cells = <1>;
+					#size-cells = <1>;
+					compatible = "nordic,nrf-gpregret";
+					reg = <0x500 0x1>;
+					status = "disabled";
+				};
+
+				gpregret2: gpregret2@504 {
+					#address-cells = <1>;
+					#size-cells = <1>;
+					compatible = "nordic,nrf-gpregret";
+					reg = <0x504 0x1>;
+					status = "disabled";
+				};
+			};
+
 			audio_auxpll: auxpll@130000 {
 				compatible = "nordic,nrf-auxpll";
 				reg = <0x130000 0x1000>;
@@ -937,8 +965,8 @@
 
 			cpuapp_mram: mram@0 {
 				compatible = "soc-nv-flash";
-				reg = <0 DT_SIZE_K(4084)>;
-				ranges = <0x0 0 DT_SIZE_K(4084)>;
+				reg = <0 DT_SIZE_K(4076)>;
+				ranges = <0x0 0 DT_SIZE_K(4076)>;
 				erase-block-size = <4096>;
 				write-block-size = <4>;
 				#address-cells = <1>;

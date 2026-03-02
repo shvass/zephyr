@@ -53,6 +53,7 @@
 #include "common/bt_str.h"
 #include "conn_internal.h"
 #include "direction_internal.h"
+#include "gatt_gap_svc_validate.h"
 #include "hci_core.h"
 #include "id.h"
 #include "iso_internal.h"
@@ -787,9 +788,6 @@ error_return:
 	return err;
 }
 
-static struct k_poll_signal conn_change =
-		K_POLL_SIGNAL_INITIALIZER(conn_change);
-
 static void conn_destroy(struct bt_conn *conn, void *data)
 {
 	if (conn->state == BT_CONN_CONNECTED ||
@@ -1184,7 +1182,6 @@ void bt_conn_set_state(struct bt_conn *conn, bt_conn_state_t state)
 			}
 			break;
 		}
-		k_poll_signal_raise(&conn_change, 0);
 
 		if (bt_conn_is_iso(conn)) {
 			bt_iso_connected(conn);
@@ -3452,8 +3449,8 @@ static bool le_conn_rate_common_params_valid(const struct bt_conn_le_conn_rate_p
 		return false;
 	}
 
-	if (!IN_RANGE(param->supervision_timeout_10ms, BT_HCI_LE_SUPERVISON_TIMEOUT_MIN,
-		     BT_HCI_LE_SUPERVISON_TIMEOUT_MAX)) {
+	if (!IN_RANGE(param->supervision_timeout_10ms, BT_HCI_LE_SUPERVISION_TIMEOUT_MIN,
+		     BT_HCI_LE_SUPERVISION_TIMEOUT_MAX)) {
 		return false;
 	}
 
@@ -4432,6 +4429,14 @@ int bt_conn_init(void)
 	}
 
 	bt_att_init();
+
+	if (IS_ENABLED(CONFIG_BT_GATT_GAP_SVC_VALIDATE)) {
+		err = gatt_gap_svc_validate();
+		if (err != 0) {
+			LOG_DBG("GATT GAP service validation failed (err %d)", err);
+			return err;
+		}
+	}
 
 	err = bt_smp_init();
 	if (err) {

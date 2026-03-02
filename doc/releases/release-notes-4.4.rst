@@ -84,11 +84,40 @@ Deprecated APIs and options
     * :c:member:`bt_conn_le_info.interval` has been deprecated. Use
       :c:member:`bt_conn_le_info.interval_us` instead. Note that the units have changed:
       ``interval`` was in units of 1.25 milliseconds, while ``interval_us`` is in microseconds.
+    * The :kconfig:option:`CONFIG_DEVICE_NAME_GATT_WRITABLE_NONE` option has been deprecated.
+      Applications should use :kconfig:option:`CONFIG_BT_DEVICE_NAME_GATT_WRITABLE_NONE`
+      option instead.
+    * The :kconfig:option:`CONFIG_DEVICE_NAME_GATT_WRITABLE_ENCRYPT` option has been deprecated.
+      Applications should use :kconfig:option:`CONFIG_BT_DEVICE_NAME_GATT_WRITABLE_ENCRYPT`
+      option instead.
+    * The :kconfig:option:`CONFIG_DEVICE_NAME_GATT_WRITABLE_AUTHEN` option has been deprecated.
+      Applications should use :kconfig:option:`CONFIG_BT_DEVICE_NAME_GATT_WRITABLE_AUTHEN`
+      option instead.
+    * The :kconfig:option:`CONFIG_DEVICE_APPEARANCE_GATT_WRITABLE_AUTHEN` option has been
+      deprecated.
+      Applications should use :kconfig:option:`CONFIG_BT_DEVICE_APPEARANCE_GATT_WRITABLE_AUTHEN`
+      option instead.
+
+  * HCI
+
+    * :c:macro:`BT_HCI_LE_SUPERVISON_TIMEOUT_MIN` and :c:macro:`BT_HCI_LE_SUPERVISON_TIMEOUT_MAX` have been deprecated.
+      Use :c:macro:`BT_HCI_LE_SUPERVISION_TIMEOUT_MIN` and :c:macro:`BT_HCI_LE_SUPERVISION_TIMEOUT_MAX` instead.
+
+* I2S
+
+  * The following macros have been deprecated and are replaced with equivalent macros whose names
+    are aligned with the `latest revision of the I2S specification`_.
+
+    * :c:macro:`I2S_OPT_BIT_CLK_MASTER` -> :c:macro:`I2S_OPT_BIT_CLK_CONTROLLER`
+    * :c:macro:`I2S_OPT_FRAME_CLK_MASTER` -> :c:macro:`I2S_OPT_FRAME_CLK_CONTROLLER`
+    * :c:macro:`I2S_OPT_BIT_CLK_SLAVE` -> :c:macro:`I2S_OPT_BIT_CLK_TARGET`
+    * :c:macro:`I2S_OPT_FRAME_CLK_SLAVE` -> :c:macro:`I2S_OPT_FRAME_CLK_TARGET`
+
+.. _latest revision of the I2S specification: https://www.nxp.com/docs/en/user-manual/UM11732.pdf
 
 * POSIX
 
   * :kconfig:option:`CONFIG_XOPEN_STREAMS` was deprecated. Instead, use :kconfig:option:`CONFIG_XSI_STREAMS`
-
 * Sensors
 
   * NXP
@@ -132,6 +161,8 @@ New APIs and options
   * Audio
 
     * :c:func:`bt_bap_ep_get_conn`
+    * :c:member:`bt_ccp_call_control_client_cb.user_data`
+    * :kconfig:option:`CONFIG_BT_TBS_MAX_FRIENDLY_NAME_LENGTH`
 
   * Host
 
@@ -273,6 +304,10 @@ New APIs and options
   * :kconfig:option:`CONFIG_SETTINGS_SAVE_SINGLE_SUBTREE_WITHOUT_MODIFICATION`
   * :kconfig:option:`CONFIG_SETTINGS_SAVE_SINGLE_SUBTREE_WITHOUT_MODIFICATION_VALUE_SIZE`
 
+* Shell
+
+  * :c:func:`shell_readline` for :ref:`user input <shell-readline>`
+
 * Sys
 
   * :c:macro:`COND_CASE_1`
@@ -346,6 +381,8 @@ New Drivers
 
   * Added new stm32 BSEC driver that provides means to program and read OTP fuses
     (:dtcompatible:`st,stm32-bsec`). (:github:`102403`)
+  * Added SiFli SF32LB eFuse OTP driver (:dtcompatible:`sifli,sf32lb-efuse`).
+    (:github:`101926`)
   * :dtcompatible:`nxp,ocotp` (:github:`102567` & :github:`103089`)
 
 New Samples

@@ -10,9 +10,19 @@
 #include <zephyr/dt-bindings/gpio/gpio.h>
 
 / {
-	flash0: flash@0 {
-		compatible = "soc-nv-flash";
-		reg = <0x00000000 0x20000>;  /* 128 KB Flash */
+	flash_controller: flash-controller@40100004 {
+		compatible = "infineon,flash-controller";
+		reg = <0x40100004 0x104>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		status = "okay";
+
+		flash0: flash@0 {
+			compatible = "soc-nv-flash";
+			reg = <0x00000000 0x20000>;  /* 128 KB Flash */
+			write-block-size = <256>;
+			erase-block-size = <256>;
+		};
 	};
 
 	sram0: memory@20000000 {
@@ -140,6 +150,17 @@
 			compatible = "infineon,watchdog";
 			reg = <0x40030000 0xf1c>;
 			interrupts = <5 0>;
+			status = "disabled";
+		};
+
+		adc0: adc@403a0000 {
+			compatible = "infineon,sar-adc";
+			infineon,version = <3>;
+			reg = <0x403a0000 0xf08>;
+			interrupts = <22 0>;
+			#io-channel-cells = <1>;
+			clocks = <&peri_clk_div4>;
+			clk-dst = <0xc>;
 			status = "disabled";
 		};
 
