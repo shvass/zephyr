@@ -31,6 +31,13 @@ config AUDIO_CODEC_SHELL
 	help
 	  Enable the Audio Codec shell with Audio Codec related commands.
 
+config AUDIO_CODEC_MOCK
+	bool "Audio Codec Mock Driver"
+	depends on SERIAL
+	# depends on DT_HAS_AUDIO_CODEC_MOCK
+	help
+	  Enable the Audio Codec Mock Driver for testing purposes.
+
 module = AUDIO_CODEC
 module-str = audio codec
 source "subsys/logging/Kconfig.template.log_config"

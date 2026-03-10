@@ -1,0 +1,12 @@
+
+description: Mock audio codec using serial transport
+
+compatible: "zephyr,mock-audio-codec"
+
+include: base.yaml
+
+properties:
+  transport:
+    type: phandle
+    required: true
+    description: UART transport device
